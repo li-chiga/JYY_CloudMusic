@@ -186,3 +186,51 @@ property <type> <name>[: <initialValue>]
      ```
 
   
+
+# 三、窗口图标、窗口最大化最小化关闭等问题
+
+## 1、添加资源文件路径问题：
+
+在 QML 中，`source: "qrc:/img/Resources/title/mini.png"` 和 `source: "/img/Resources/title/mini.png"`
+
+### （1）资源存储与加载方式
+
+- **qrc:/img/Resources/title/mini.png** ：表示使用 Qt 的资源系统，图片资源被编译并嵌入到可执行文件中。在编译时，Qt 将资源文件转换为二进制数据，存储在静态数组中，程序运行时直接从内存中加载，始终可用，不会因外部文件缺失导致加载失败。
+- **/img/Resources/title/mini.png** ：表示使用文件系统路径，程序运行时从外部文件系统加载图片。需保证文件系统中存在该路径且图片文件完整，否则无法加载资源
+
+### （2）适用场景
+
+- **qrc:/img/Resources/title/mini.png** ：适用于程序打包发布，确保资源与程序紧密集成，提高可移植性和稳定性，适合资源相对固定且不需频繁更新的情况，如应用程序的图标、界面元素等。
+- **/img/Resources/title/mini.png** ：适用于开发调试或资源需动态更新的场景，方便快速修改和替换图片资源，无需重新编译项目，适合资源经常变化或需从外部加载的内容，如用户上传的图片、可更换的主题等。
+
+### （3）性能表现
+
+- **qrc:/img/Resources/title/mini.png** ：加载速度较快，因资源已嵌入可执行文件，无需额外文件 I/O 操作，减少磁盘读取和文件查找时间，提高程序启动和运行效率。
+- **/img/Resources/title/mini.png** ：加载速度相对较慢，需访问外部文件系统，文件路径查找和磁盘读取操作会增加一定时间开销，性能受文件系统状态和路径复杂度影响
+
+### （4）路径规范与灵活性
+
+- **qrc:/img/Resources/title/mini.png** ：路径规范严格，需在 Qt 资源文件（.qrc）中预先定义资源文件及其路径，修改路径需调整 .qrc 文件并重新编译。
+- **/img/Resources/title/mini.png** ：路径灵活多样，可使用绝对路径或相对路径，方便根据项目目录结构和需求灵活设置，无需额外配置资源文件。
+
+### （5）跨平台兼容性
+
+- **qrc:/img/Resources/title/mini.png** ：在不同平台下表现一致，不会因文件系统差异或路径格式问题导致资源加载失败，确保应用程序在 Windows、macOS、Linux 等平台上的兼容性和稳定性。
+- **/img/Resources/title/mini.png** ：需注意不同平台的文件系统差异，如路径分隔符、大小写敏感性等，避免因路径格式问题导致资源无法加载，在跨平台开发中需进行相应适配处理。
+
+## 2、QML中语法应用辨析－在 QML 的锚点系统中：
+
+1. `anchors.centerIn` 期望一个 `Item` 对象作为值
+2. `parent.verticalCenter` 是一个 `AnchorLine` 类型（表示垂直中心线）
+3. 不能直接将 `AnchorLine` 赋值给期望 `Item` 的属性
+
+## 3、出现编程错误点
+
+![1754243399238](C:\Users\宏\AppData\Roaming\Typora\typora-user-images\1754243399238.png)
+
+上图中点击图标进行方法缩小操作没有任何作用,这是什么原因导致的？
+
+因为写在最下边的一段代码，MouseArea是可以将上面的MouseArea覆盖的，所以才有了MouseArea穿透的处理方法。也可以简单粗暴的将最下边的MouseArea提上去。
+
+![1754243578377](C:\Users\宏\AppData\Roaming\Typora\typora-user-images\1754243578377.png)
+
