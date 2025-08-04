@@ -7,5 +7,7 @@
         <file>Src/commonUI/JYYWindow.qml</file>
         <file>Src/title/MinAndMax.qml</file>
         <file>Src/title/UserCommonSetting.qml</file>
+        <file>Src/title/Search.qml</file>
+        <file>Src/commonUI/JYYSearchBox.qml</file>
     </qresource>
 </RCC>

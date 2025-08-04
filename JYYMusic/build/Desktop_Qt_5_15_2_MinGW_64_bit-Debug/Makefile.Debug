@@ -104,14 +104,17 @@ debug/qrc_qml.cpp: ../../qml.qrc \
 		../../main.qml \
 		../../Src/rightPage/RightPage.qml \
 		../../Src/commonUI/JYYWindow.qml \
+		../../Src/commonUI/JYYSearchBox.qml \
 		../../Src/playMusic/PlayMusic.qml \
 		../../Src/title/UserCommonSetting.qml \
+		../../Src/title/Search.qml \
 		../../Src/title/MinAndMax.qml \
 		../../Src/leftPage/LeftPage.qml
 	E:\2_Software\Qt\5.15.2\mingw81_64\bin\rcc.exe -name qml ..\..\qml.qrc -o debug\qrc_qml.cpp
 
 debug/qrc_res.cpp: ../../res.qrc \
 		E:/2_Software/Qt/5.15.2/mingw81_64/bin/rcc.exe \
+		../../Resources/searchBox/remove.png \
 		../../Resources/title/close.png \
 		../../Resources/title/record.png \
 		../../Resources/title/vip.png \

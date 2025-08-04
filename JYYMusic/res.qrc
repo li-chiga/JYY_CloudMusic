@@ -12,5 +12,6 @@
         <file>Resources/title/skin.png</file>
         <file>Resources/title/user.png</file>
         <file>Resources/title/vip.png</file>
+        <file>Resources/searchBox/remove.png</file>
     </qresource>
 </RCC>
