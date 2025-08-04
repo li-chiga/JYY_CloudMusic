@@ -24,3 +24,4 @@ Window {
                               mainWindow.y += delta.y
                           }
     }
+}

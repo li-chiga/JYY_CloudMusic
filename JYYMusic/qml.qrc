@@ -5,5 +5,7 @@
         <file>Src/rightPage/RightPage.qml</file>
         <file>Src/playMusic/PlayMusic.qml</file>
         <file>Src/commonUI/JYYWindow.qml</file>
+        <file>Src/title/MinAndMax.qml</file>
+        <file>Src/title/UserCommonSetting.qml</file>
     </qresource>
 </RCC>

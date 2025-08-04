@@ -232,6 +232,7 @@ Makefile: ../../JYYMusic.pro E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/win32-g+
 		E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/qt_config.prf \
 		E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/win32-g++/qmake.conf \
 		E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/exclusive_builds.prf \
 		E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/toolchain.prf \
 		E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/default_pre.prf \
@@ -262,7 +263,6 @@ Makefile: ../../JYYMusic.pro E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/win32-g+
 		E:/2_Software/Qt/5.15.2/mingw81_64/lib/Qt5Network.prl \
 		E:/2_Software/Qt/5.15.2/mingw81_64/lib/Qt5Core.prl \
 		E:/2_Software/Qt/5.15.2/mingw81_64/lib/qtmain.prl \
-		.qmake.stash \
 		E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/build_pass.prf \
 		../../qml.qrc \
 		../../res.qrc
@@ -429,6 +429,7 @@ E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/qt_functions.prf:
 E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/qt_config.prf:
 E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/win32-g++/qmake.conf:
 E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/exclusive_builds.prf:
 E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/toolchain.prf:
 E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/default_pre.prf:
@@ -459,7 +460,6 @@ E:/2_Software/Qt/5.15.2/mingw81_64/lib/Qt5Qml.prl:
 E:/2_Software/Qt/5.15.2/mingw81_64/lib/Qt5Network.prl:
 E:/2_Software/Qt/5.15.2/mingw81_64/lib/Qt5Core.prl:
 E:/2_Software/Qt/5.15.2/mingw81_64/lib/qtmain.prl:
-.qmake.stash:
 E:/2_Software/Qt/5.15.2/mingw81_64/mkspecs/features/build_pass.prf:
 ../../qml.qrc:
 ../../res.qrc:

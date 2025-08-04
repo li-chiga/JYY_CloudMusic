@@ -1,110 +1,117 @@
 import QtQuick 2.15
 import QtGraphicalEffects 1.15
+import QtQuick.Controls 2.15
+import "../title"
 
 Rectangle {
-    Item{
+    //搜索框
+    Row{
+        id:searchRow
+        spacing: 10
         anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        height: 60
-        Row{
-            id:miniRow
-            spacing: 15
-            anchors.verticalCenter:parent.verticalCenter
-            anchors.right: parent.right
-            anchors.rightMargin: 0.02*mainWindow.width
+        anchors.leftMargin: 36
+        anchors.verticalCenter: otherRow.verticalCenter
+        Rectangle{
+            id:backForwardRect
+            width: 24
+            height: 35
+            radius: 4
+            color: "transparent"
+            border.width: 1
+            border.color: "#2b2b31"
             Image {
-                id: miniImg
-                anchors.verticalCenter: parent.verticalCenter
-                source: "qrc:/img/Resources/title/mini.png"
-                layer.enabled: false
-                layer.effect: ColorOverlay{
-                    source:miniImg
-                    color:"white"
+                anchors.centerIn: parent
+                source: "/img/Resources/title/arrow.png"
+            }
+        }
+        //输入框
+        TextField{
+            id:searchTextField
+            height: backForwardRect.height
+            width: 240
+            placeholderText:"晴天"
+            font.pixelSize:16
+            font.family:"微软雅黑 Light"
+            leftPadding:40
+            color: "white"
+            background: Rectangle{//外部矩形
+                anchors.fill: parent
+                radius:8
+                gradient: Gradient{//外部矩形渐变
+                    orientation: Gradient.Horizontal    //水平方向渐变
+                    GradientStop{color: "#21283d";position: 0}
+                    GradientStop{color: "#382635";position: 1}
                 }
-                MouseArea{
-                    anchors.fill: parent
-                    hoverEnabled: true  //支持鼠标悬浮
-                    onEntered: {
-                        miniImg.layer.enabled = true
-                    }
-                    onExited: {
-                        miniImg.layer.enabled = false
-                    }
-                    onClicked: {
-                        // mainWindow.showMinimized()
+                Rectangle{//内部矩形
+                    id:innerRect
+                    anchors.fill:parent
+                    radius:8
+                    anchors.margins:1
+                    property real gradientStopPos: 1
+                    gradient: Gradient{//外部矩形渐变
+                        orientation: Gradient.Horizontal    //水平方向渐变
+                        GradientStop{color: "#1a1d29";position: 0}
+                        GradientStop{color: "#241c26";position: innerRect.gradientStopPos}
                     }
                 }
             }
-            //最小化
-            Rectangle{
-                id:miniRantange
-                width: 20
-                height: 2
-                anchors.verticalCenter: parent.verticalCenter
-                color: "#75777f"
-                MouseArea{
-                    anchors.fill: parent
-                    hoverEnabled: true  //支持鼠标悬浮
-                    onEntered: {
-                        miniRantange.color = "white"
-                    }
-                    onExited: {
-                        miniRantange.color = "#75777f"
-                    }
-                    onClicked: {
-                        mainWindow.showMinimized()
-                    }
-                }
-            }
-            //最大化
-            Rectangle{
-                id:maxRectange
-                width: 20
-                height: width
-                radius: 2
-                border.width: 1
-                border.color:"#75777f"
-                color: "transparent"
-                anchors.verticalCenter: parent.verticalCenter
-                MouseArea{
-                    anchors.fill: parent
-                    hoverEnabled: true  //支持鼠标悬浮
-                    onEntered: {
-                        maxRectange.color = "white"
-                    }
-                    onExited: {
-                        maxRectange.color = "#75777f"
-                    }
-                    onClicked: {
-                        mainWindow.showFullScreen()
-                    }
-                }
-            }
-            //关闭
             Image {
-                id: closeImg
+                id: searchIcon
+                scale: 0.6
                 anchors.verticalCenter: parent.verticalCenter
-                source: "qrc:/img/Resources/title/close.png"
-                layer.enabled: false
-                layer.effect: ColorOverlay{
-                    source:closeImg
-                    color:"white"
+                anchors.left: parent.left
+                anchors.leftMargin: 8
+                source: "/img/Resources/title/search.png"
+            }
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    innerRect.gradientStopPos = 0
                 }
-                MouseArea{
-                    anchors.fill: parent
-                    hoverEnabled: true  //支持鼠标悬浮
-                    onEntered: {
-                        closeImg.layer.enabled = true
-                    }
-                    onExited: {
-                        closeImg.layer.enabled = false
-                    }
-                    onClicked: {
-                       Qt.quit()
-                    }
+            }
+        }
+        Rectangle{
+            id:soundHoundRect
+            height: backForwardRect.height
+            width: height
+            radius: 8
+            color: "#241C26"
+            border.color: "#36262f"
+            border.width: 1
+            Image {
+                id: musicDiscIcon
+                anchors.verticalCenter: parent.verticalCenter
+                source: "/img/Resources/title/record.png"
+            }
+            MouseArea{
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: {
+                    soundHoundRect.color = "#36262f"
+                }
+                onExited: {
+                    soundHoundRect.color = "241c26"
                 }
             }
         }
     }
+    //登录
+    UserCommonSetting{
+        id:otherRow
+        spacing: 5
+        anchors.verticalCenter: minMAx.verticalCenter
+        anchors.right: minMAx.left
+        anchors.rightMargin: 10
+    }
+
+    //最大化、最小化、退出
+    MinAndMax{
+        id:minMAx
+        width: 180
+        //anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        height:60
+    }
 }
+

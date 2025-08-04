@@ -234,3 +234,52 @@ property <type> <name>[: <initialValue>]
 
 ![1754243578377](C:\Users\宏\AppData\Roaming\Typora\typora-user-images\1754243578377.png)
 
+# 四、登录、邮箱、主题、设置等顶部标题栏制作
+
+归类规范：如果我们发现上述标题栏显示界面中的相关且相邻的内容结合在一起时，可以将其归为一类，使用Row等进行统一管理。
+
+设计细节：
+
+​				第一、搞清楚那些控件之间的依赖关系，到底是基于谁来定位空间位置设计控件属性的？
+
+​				第二、搞清楚控件之间的相互影响，别搞调整一个整体都受到影响的事情。
+
+![1754326272222](C:\Users\宏\AppData\Roaming\Typora\typora-user-images\1754326272222.png)
+
+五、设计顶部标题的搜索输入框
+
+![1754326525547](C:\Users\宏\AppData\Roaming\Typora\typora-user-images\1754326525547.png)
+
+这部分主要涉及到两点：
+
+- 搜索输入框外部边框改成圆角进行美观话处理需要用到输入框组件TextField的background属性
+
+  ```C++
+  background: Rectangle{//外部矩形
+      anchors.fill: parent
+      radius:8
+      gradient: Gradient{//外部矩形渐变
+          orientation: Gradient.Horizontal    //水平方向渐变
+          GradientStop{color: "#21283d";position: 0}
+          GradientStop{color: "#382635";position: 1}
+      }
+      Rectangle{//内部矩形
+          id:innerRect
+          anchors.fill:parent
+          radius:8
+          anchors.margins:1
+          property real gradientStopPos: 1
+          gradient: Gradient{//外部矩形渐变
+              orientation: Gradient.Horizontal    //水平方向渐变
+              GradientStop{color: "#1a1d29";position: 0}
+              GradientStop{color: "#241c26";position: innerRect.gradientStopPos}
+          }
+      }
+  }
+  ```
+
+- 输入框中的默认子设计有相关的属性可以选择，跟根据实际自己进行设计
+
+- 文本框中的渐变效果巧妙的使用矩形中的gradient属性，参考上面代码部分
+
+本次遇到同样的一个问题，就是鼠标覆盖影响问题，我们想鼠标放在搜索输入框上，并点击开始输入时，聊天框中的渐变效果消失，可是在测试的过程中出现渐变虽然消失了，但是输入功能也消失了，卡死在不能输入状态了。小问题后续可解决。

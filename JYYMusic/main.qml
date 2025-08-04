@@ -30,6 +30,7 @@ JYYWindow {
     }
 
     PlayMusic{
+        id:bottomRect
         height: 100
         anchors.left: parent.left
         anchors.right: parent.right
