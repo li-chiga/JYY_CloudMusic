@@ -1,0 +1,2 @@
+module basic
+singleton BasicConfig 1.0 BasicConfig.qml

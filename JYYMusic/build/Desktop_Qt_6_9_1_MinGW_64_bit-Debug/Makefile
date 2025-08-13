@@ -344,6 +344,7 @@ Makefile: ../../JYYMusic.pro E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/win32-g++/
 		E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/qt_config.prf \
 		E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/win32-g++/qmake.conf \
 		E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/exclusive_builds.prf \
 		E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/toolchain.prf \
 		E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/default_pre.prf \
@@ -378,9 +379,9 @@ Makefile: ../../JYYMusic.pro E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/win32-g++/
 		E:/2_Software/Qt6/6.9.1/mingw_64/lib/Qt6Network.prl \
 		E:/2_Software/Qt6/6.9.1/mingw_64/lib/Qt6Core.prl \
 		E:/2_Software/Qt6/6.9.1/mingw_64/lib/Qt6EntryPoint.prl \
-		.qmake.stash \
 		E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/build_pass.prf \
-		../../qml.qrc
+		../../qml.qrc \
+		../../res.qrc
 	$(QMAKE) -o Makefile ..\..\JYYMusic.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/spec_pre.prf:
 E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/device_config.prf:
@@ -656,6 +657,7 @@ E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/qt_functions.prf:
 E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/qt_config.prf:
 E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/win32-g++/qmake.conf:
 E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/exclusive_builds.prf:
 E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/toolchain.prf:
 E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/default_pre.prf:
@@ -690,9 +692,9 @@ E:/2_Software/Qt6/6.9.1/mingw_64/lib/Qt6Qml.prl:
 E:/2_Software/Qt6/6.9.1/mingw_64/lib/Qt6Network.prl:
 E:/2_Software/Qt6/6.9.1/mingw_64/lib/Qt6Core.prl:
 E:/2_Software/Qt6/6.9.1/mingw_64/lib/Qt6EntryPoint.prl:
-.qmake.stash:
 E:/2_Software/Qt6/6.9.1/mingw_64/mkspecs/features/build_pass.prf:
 ../../qml.qrc:
+../../res.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\..\JYYMusic.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 

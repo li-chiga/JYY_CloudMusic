@@ -21,5 +21,7 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
     engine.load(url);
 
+    qmlRegisterSingletonType(QUrl("qrc:/Src/basic/BasicConfig.qml"),"BasicConfig",1,0,"basicConfig");//注册单例
+
     return app.exec();
 }

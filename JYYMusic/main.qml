@@ -1,23 +1,33 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import QtGraphicalEffects 1.15
+import QtQuick.Controls 2.15
+import "./Src/leftPage"
+import "./Src/rightPage"
+import "./Src/playMusic"
+import "./Src/commonUI"
+import "./Src/basic"
+import "./Src/mainPopups"
 
-Window {
+JYYWindow {
+    id:mainWindow
     width: 1317
     height: 933
-    visible: true
-    title: qsTr("Hello World")
-    flags:Qt.FramelessWindowHint | Qt.Window | Qt.WindowSystemMenuHint |
-          Qt.WindowMaximizeButtonHint | Qt.WindowMinimizeButtonHint         //设置无边框属性
-    signal post
-    Rectangle{
+    Connections{
+        target: BasicConfig
+        function onOpenLoginPopup(){
+            loginPopup.open()
+        }
+    }
+    LeftPage{
         id:leftRectangle
         width:255
         anchors.top: parent.top
         anchors.bottom: bottomRect.top
         color:"#1a1a21"
-
     }
-    Rectangle{
+
+    RightPage{
         id:rightRect
         anchors.left: leftRectangle.right
         anchors.right: parent.right
@@ -26,7 +36,8 @@ Window {
         color:"#13131a"
 
     }
-    Rectangle{
+
+    PlayMusic{
         id:bottomRect
         height: 100
         anchors.left: parent.left
@@ -34,4 +45,12 @@ Window {
         anchors.bottom: parent.bottom
         color: "#2d2d37"
     }
+    LoginPopup{
+        id:loginPopup
+    }
+    LoginByOtherMeansPopup{
+        id:loginByOtherMeansPopup
+        anchors.centerIn: parent
+    }
 }
+

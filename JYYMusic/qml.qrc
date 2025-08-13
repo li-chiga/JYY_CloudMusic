@@ -1,5 +1,18 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>Src/leftPage/LeftPage.qml</file>
+        <file>Src/rightPage/RightPage.qml</file>
+        <file>Src/playMusic/PlayMusic.qml</file>
+        <file>Src/commonUI/JYYWindow.qml</file>
+        <file>Src/title/MinAndMax.qml</file>
+        <file>Src/title/UserCommonSetting.qml</file>
+        <file>Src/title/Search.qml</file>
+        <file>Src/commonUI/JYYSearchBox.qml</file>
+        <file>Src/basic/BasicConfig.qml</file>
+        <file>Src/basic/qmldir</file>
+        <file>Src/mainPopups/LoginPopup.qml</file>
+        <file>Src/mainPopups/LoginByOtherMeansPopup.qml</file>
+        <file>Src/commonUI/JYYCheckBox.qml</file>
     </qresource>
 </RCC>
