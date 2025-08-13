@@ -92,9 +92,10 @@ Row{
         anchors.verticalCenter: parent.verticalCenter
         source: "qrc:/img/Resources/title/arrow.png"
         rotation: -90
-        layer.enabled:false
+        layer.enabled:true
         layer.effect: ColorOverlay{
             source:loginImg
+            color: "white"
         }
         MouseArea{
             anchors.fill: parent
@@ -117,6 +118,7 @@ Row{
         layer.enabled:false
         layer.effect: ColorOverlay{
             source:messageImg
+            color: "white"
         }
         MouseArea{
             anchors.fill: parent
@@ -139,6 +141,7 @@ Row{
         layer.enabled:false
         layer.effect: ColorOverlay{
             source:settingImg
+            color: "white"
         }
         MouseArea{
             anchors.fill: parent
@@ -148,6 +151,9 @@ Row{
             }
             onExited: {
                 parent.layer.enabled = false
+            }
+            onClicked: {
+                mainStackView.push("qrc:/Src/rightPage/stackPages/settings.qml")  //对页面进行压栈
             }
         }
     }
@@ -161,6 +167,7 @@ Row{
         layer.enabled:false
         layer.effect: ColorOverlay{
             source:skinImg
+            color: "white"
         }
         MouseArea{
             anchors.fill: parent
@@ -175,7 +182,7 @@ Row{
     }
     //分割线
     Rectangle{
-        width: 1
+        width: 2
         height: 24
         color: "#2d2d37"
         anchors.verticalCenter: parent.verticalCenter

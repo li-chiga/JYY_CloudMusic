@@ -14,5 +14,8 @@
         <file>Src/mainPopups/LoginPopup.qml</file>
         <file>Src/mainPopups/LoginByOtherMeansPopup.qml</file>
         <file>Src/commonUI/JYYCheckBox.qml</file>
+        <file>Src/rightPage/TopTitle.qml</file>
+        <file>Src/rightPage/stackPages/CloudMusicCherryPick.qml</file>
+        <file>Src/rightPage/stackPages/settings.qml</file>
     </qresource>
 </RCC>

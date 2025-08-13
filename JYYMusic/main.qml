@@ -45,9 +45,11 @@ JYYWindow {
         anchors.bottom: parent.bottom
         color: "#2d2d37"
     }
+
     LoginPopup{
         id:loginPopup
     }
+
     LoginByOtherMeansPopup{
         id:loginByOtherMeansPopup
         anchors.centerIn: parent
