@@ -41,6 +41,5 @@
         <file>Resources/mianPopups/nationFlags/Netherland.png</file>
         <file>Resources/title/close2.png</file>
     </qresource>
-    <qresource prefix="/">
-    </qresource>
+    <qresource prefix="/"/>
 </RCC>
