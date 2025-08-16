@@ -1,7 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import "../basic"
-import "../mainPopups"
 
 Popup{
     id:loginPopup
@@ -155,7 +154,6 @@ Popup{
             }
         }
         Text{
-            id: otherLoginTexts
             color: "#75777f"
             anchors.bottom: parent.bottom
             anchors.bottomMargin:50
@@ -164,34 +162,20 @@ Popup{
             font.pixelSize: 20
             // font.family: BasicConfig.commFont
             MouseArea{
-                id:otherLoginMouse
                 anchors.fill: parent
                 hoverEnabled: true
-                // onEntered: {
-                //     otherLoginTexts.color = "#white"   //30a0ff
-                //     cursorShape = Qt.PointingHandCursor
-                // }
-                // onExited: {
-                //     otherLoginTexts.color = "#a0a0b0"
-                //     cursorShape = Qt.ArrowCursor
-                // }
-                onPressed: {
-                    otherLoginTexts.scale = 0.95
-                    otherLoginTexts.color = "#30a0ff"
+                onEntered: {
+                    cursorShape = Qt.PointingHandCursor
                 }
-                onReleased:{
-                    otherLoginTexts.scale = 1.0
-                    otherLoginTexts.color = "#a0a0b0"
+                onExited: {
+                    cursorShape = Qt.ArrowCursor
                 }
                 onClicked:{
-                    // console.log("点击了其他登录方式按钮")
-                    // console.log("BasicConfig 类型:", typeof BasicConfig)
-                    // console.log("openLoginByOtherMeansPopup 存在:",
-                    //            typeof BasicConfig.openLoginByOtherMeansPopup !== "undefined")
                     BasicConfig.openLoginByOtherMeansPopup()
                     BasicConfig.closeLoginPopup()
                 }
             }
+
         }
     }
 }
