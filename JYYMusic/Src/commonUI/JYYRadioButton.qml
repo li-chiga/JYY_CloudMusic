@@ -54,11 +54,11 @@ Item {
                 height: jyyRadioButtonRoot.height
 
                 // 使用 TextMetrics 获取文本宽度
-                implicitWidth: textMetrics.advanceWidth
+                width: textMetrics.advanceWidth
                 TextMetrics{
                     id:textMetrics
                     text: control.text
-                    font: control.font
+                    font: control.font || Qt.font({family: "黑体",pixelSize: 18 })
                 }
                 // width: control.text
                 JYYVipIconItem{

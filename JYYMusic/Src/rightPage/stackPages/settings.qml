@@ -80,12 +80,23 @@ Item {
                             cursorShape = Qt.ArrowCursor
                         }
                         onClicked: {
-                            for(let i = 0;i<selectorRep.count;i++)selectorRep.itemAt(i).setLabelColor("#a1a1a3")
+                            for(let i = 0;i<selectorRep.count;i++){
+                                if(selectorRep.itemAt(i)){
+                                    selectorRep.itemAt(i).setLabelColor("#a1a1a3")
+                                }
+                            }
                             selectorRep.selectedIndex = index
                             parent.setLabelColor("white")
                             let slideTo = 0
-                            for(let i = 0;i<index;i++)slideTo += setingTitleFlow.moduleHeights[i]
-                            flick.contentY = slideTo
+                            if(index >= 0 && index < settingTitleFlow.moduleHeights.length){
+                                for(let i = 0;i<index;i++){
+                                    const height = settingTitleFlow.moduleHeights[i] || 0
+                                    slideTo += height
+                                }
+                            }else{
+                                console.error("Index out of range:", index)
+                            }
+                            flick.contentY = Number.isFinite(slideTo) ? slideTo : 0
                         }
                     }
                 }
