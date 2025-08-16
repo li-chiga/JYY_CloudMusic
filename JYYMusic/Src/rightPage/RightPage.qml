@@ -4,31 +4,24 @@ import QtQuick.Controls 2.15
 import "../title"
 
 Rectangle {
-    //搜索框
-    Search{
-        id:searchRow
-        spacing: 10
+    TopTitle{
+        id:titleArea
         anchors.left: parent.left
-        anchors.leftMargin: 36
-        anchors.verticalCenter: otherRow.verticalCenter
-    }
-    //登录
-    UserCommonSetting{
-        id:otherRow
-        spacing: 5
-        anchors.verticalCenter: minMAx.verticalCenter
-        anchors.right: minMAx.left
-        anchors.rightMargin: 10
-    }
-
-    //最大化、最小化、退出
-    MinAndMax{
-        id:minMAx
-        width: 180
-        //anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height:60
+        height: 60
+
+    }
+
+    StackView{
+        id:mainStackView
+        anchors.top: titleArea.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 100
+        clip: true
+        initialItem: "qrc:/Src/rightPage/stackPages/CloudMusicCherryPick.qml"   //初始化界面
     }
 }
 

@@ -14,11 +14,14 @@ JYYWindow {
     width: 1317
     height: 933
     Connections{
+        id:globalEventDeal
         target: BasicConfig
-        function onOpenLoginPopup(){
-            loginPopup.open()
-        }
+        function onOpenLoginPopup(){ loginPopup.open()}
+        function onCloseLoginPopup(){loginPopup.close()}
+        function onOpenLoginByOtherMeansPopup(){loginByOtherMeansPopup.open()}
+        function onCloseLoginByOtherMeansPopup(){loginByOtherMeansPopup.close()}
     }
+
     LeftPage{
         id:leftRectangle
         width:255
@@ -45,9 +48,11 @@ JYYWindow {
         anchors.bottom: parent.bottom
         color: "#2d2d37"
     }
+
     LoginPopup{
         id:loginPopup
     }
+
     LoginByOtherMeansPopup{
         id:loginByOtherMeansPopup
         anchors.centerIn: parent
