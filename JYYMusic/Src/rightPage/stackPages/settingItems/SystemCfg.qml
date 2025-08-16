@@ -55,7 +55,7 @@ Item {
                     model:ListModel{}
                     anchors.verticalCenter: parent.verticalCenter
                     Component.onCompleted:{
-                        for(let i = 0;i < 24;i++)model.append({modelData:string(i)})
+                        for(let i = 0;i < 24;i++)model.append({modelData:String(i)})
                     }
                 }
                 Label{

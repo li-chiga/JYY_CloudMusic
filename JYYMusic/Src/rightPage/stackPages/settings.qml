@@ -9,9 +9,8 @@ Item {
 
     Item{
         anchors.fill: parent
-        anchors.leftMargin: window.width * (36 * BasicConfig.wScale / 1317)
+        anchors.leftMargin: mainWindow.width * (36 * BasicConfig.wScale / 1317)
         anchors.topMargin: 24 * BasicConfig.wScale
-
         Label{
             id:settingMainTitle
             color: "white"
@@ -28,7 +27,6 @@ Item {
             anchors.left: settingMainTitle.left
             anchors.top: settingMainTitle.bottom
             anchors.topMargin: 25
-
             height: 25
             spacing: 20
             readonly property var moduleHeights: [100,400,200,600,300,800,830,800,180,400]  //每个模块的不同高度
@@ -40,7 +38,7 @@ Item {
                 property int selectedIndex: 0
                 Item{
                     height: 40
-                    width: ItemSelectionModel.implicitWidth
+                    width: selectorLabel.implicitWidth
                     function setLabelColor(color){selectorLabel.color = color}
                     Label{
                         id:selectorLabel
@@ -87,7 +85,7 @@ Item {
                             parent.setLabelColor("white")
                             let slideTo = 0
                             for(let i = 0;i<index;i++)slideTo += setingTitleFlow.moduleHeights[i]
-                            flick.contentY = SlideTo
+                            flick.contentY = slideTo
                         }
                     }
                 }
@@ -98,9 +96,9 @@ Item {
             id:cutLine01
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.top: setingTitleFlow.bottom
+            anchors.top: settingTitleFlow.bottom
             anchors.topMargin: 20
-            anchors.rightMargin: window.width * (36 * BasicConfig.wScale / 1317)*2
+            anchors.rightMargin: mainWindow.width * (36 * BasicConfig.wScale / 1317)*2
             height: 1
             color: "#212127"
         }

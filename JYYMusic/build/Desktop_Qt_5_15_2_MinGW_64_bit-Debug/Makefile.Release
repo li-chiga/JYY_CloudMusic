@@ -122,6 +122,7 @@ release/qrc_qml.cpp: ../../qml.qrc \
 		../../Src/commonUI/JYYSpliteLine.qml \
 		../../Src/commonUI/JYYRadioButton.qml \
 		../../Src/commonUI/JYYSearchBox.qml \
+		../../Src/commonUI/JYYVipIconItem.qml \
 		../../Src/playMusic/PlayMusic.qml \
 		../../Src/mainPopups/LoginByOtherMeansPopup.qml \
 		../../Src/mainPopups/LoginPopup.qml \

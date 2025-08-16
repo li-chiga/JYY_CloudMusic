@@ -11,7 +11,7 @@ Item {
     property string contentText
     property bool checked: false
     property bool showIcon: false
-    property string VipText: "VIP开通"
+    property string vipText: "VIP开通"
     property color outerCircleColor: "#dadada"
     property color innerCircleColor: "#cecece"
     property color rightRectColor: "#dadada"
@@ -47,16 +47,43 @@ Item {
                 }
             }
             label: Text{
-               color:jyyRadioButtonRoot.enabledState?"#ddd":"#707074"
-               font.pixelSize: 18
-               font.family: "黑体"
-               verticalAlignment: Text.AlignVCenter
-               height: jyyRadioButtonRoot.height
-               width: control.text
-               JYYVipIconItem{
+                color:jyyRadioButtonRoot.enabledState?"#ddd":"#707074"
+                font.pixelSize: 18
+                font.family: "黑体"
+                verticalAlignment: Text.AlignVCenter
+                height: jyyRadioButtonRoot.height
+
+                // 使用 TextMetrics 获取文本宽度
+                implicitWidth: textMetrics.advanceWidth
+                TextMetrics{
+                    id:textMetrics
+                    text: control.text
+                    font: control.font
+                }
+                // width: control.text
+                JYYVipIconItem{
                     width: 50
-               }
+                    height: 20
+                    visible: jyyRadioButtonRoot.showIcon
+                    anchors.left: parent.right
+                    anchors.leftMargin: 5
+                    anchors.verticalCenter: parent.verticalCenter
+                    outerCircleColor: jyyRadioButtonRoot.outerCircleColor
+                    innerCircleColor: jyyRadioButtonRoot.innerCircleColor
+                    rightRectColor: jyyRadioButtonRoot.rightRectColor
+                    textColor: jyyRadioButtonRoot.textColor
+                    text: jyyRadioButtonRoot.vipText
+                }
             }
+            spacing: 10
         }
+    }
+    RadioButton{
+        id:radioBtn
+        anchors.fill:parent
+        text: contentText
+        style: radioButtonStyle
+        checked: parent.checked
+        exclusiveGroup: parent.exclusiveGroup
     }
 }
