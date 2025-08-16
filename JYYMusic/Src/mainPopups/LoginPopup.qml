@@ -184,10 +184,10 @@ Popup{
                     otherLoginTexts.color = "#a0a0b0"
                 }
                 onClicked:{
-                    console.log("点击了其他登录方式按钮")
-                    console.log("BasicConfig 类型:", typeof BasicConfig)
-                    console.log("openLoginByOtherMeansPopup 存在:",
-                               typeof BasicConfig.openLoginByOtherMeansPopup !== "undefined")
+                    // console.log("点击了其他登录方式按钮")
+                    // console.log("BasicConfig 类型:", typeof BasicConfig)
+                    // console.log("openLoginByOtherMeansPopup 存在:",
+                    //            typeof BasicConfig.openLoginByOtherMeansPopup !== "undefined")
                     BasicConfig.openLoginByOtherMeansPopup()
                     BasicConfig.closeLoginPopup()
                 }

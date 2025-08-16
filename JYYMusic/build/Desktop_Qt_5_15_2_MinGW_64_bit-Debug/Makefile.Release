@@ -106,8 +106,21 @@ release/qrc_qml.cpp: ../../qml.qrc \
 		../../Src/rightPage/TopTitle.qml \
 		../../Src/rightPage/stackPages/CloudMusicCherryPick.qml \
 		../../Src/rightPage/stackPages/settings.qml \
+		../../Src/rightPage/stackPages/settingItems/AboutJYY.qml \
+		../../Src/rightPage/stackPages/settingItems/SystemCfg.qml \
+		../../Src/rightPage/stackPages/settingItems/CustomShotCut.qml \
+		../../Src/rightPage/stackPages/settingItems/ToneQualityAndDownload.qml \
+		../../Src/rightPage/stackPages/settingItems/Common.qml \
+		../../Src/rightPage/stackPages/settingItems/Counter.qml \
+		../../Src/rightPage/stackPages/settingItems/MessageAndPrivacy.qml \
+		../../Src/rightPage/stackPages/settingItems/DesktopLyrics.qml \
+		../../Src/rightPage/stackPages/settingItems/Tools.qml \
+		../../Src/rightPage/stackPages/settingItems/Play.qml \
 		../../Src/commonUI/JYYWindow.qml \
 		../../Src/commonUI/JYYCheckBox.qml \
+		../../Src/commonUI/JYYComboBox.qml \
+		../../Src/commonUI/JYYSpliteLine.qml \
+		../../Src/commonUI/JYYRadioButton.qml \
 		../../Src/commonUI/JYYSearchBox.qml \
 		../../Src/playMusic/PlayMusic.qml \
 		../../Src/mainPopups/LoginByOtherMeansPopup.qml \
