@@ -12,6 +12,7 @@ Item {
         text: "常规"
         font.bold: true
         font.family: "黑体"
+        font.pixelSize: 22
         anchors.left: parent.left
         color: "white"
     }
@@ -25,13 +26,14 @@ Item {
         color: "#e8e8e8"
         textFormat: Text.RichText
         text: "<span style=\"font-size: 20px;color: white;font-family:'黑体';font-bold:true;\">字体选择</span>
-               <span style=\"font-size: 20px;color: #89898c;font-family:'黑体';\">(如果字体显示不清晰，请在控制面板-字体设置中启动系统Clear Type设置)</span>"
+               <span style=\"font-size: 20px;color: #89898c;font-family:'黑体';\">(如果字体显示不清晰，请在控制面板-字体设置中启动系统ClearType设置)</span>"
     }
     //字体选择框
     JYYComboBox{
         id:fontSelectorCbx
-        width:150
+        width:130
         height: 30
+        // spacing: 3
         anchors.left: counterDiscriptionLabel.left
         anchors.top: counterDiscriptionLabel.bottom
         anchors.topMargin: 20

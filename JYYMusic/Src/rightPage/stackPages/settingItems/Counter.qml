@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import "../../../basic"
+import "../../../commonUI"
 
 Item {
     anchors.left: parent.left
@@ -53,4 +54,6 @@ Item {
             }
         }
     }
+    //分割线
+    JYYSpliteLine{}
 }

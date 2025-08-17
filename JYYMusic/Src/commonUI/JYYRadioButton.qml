@@ -4,7 +4,7 @@ import QtQuick.Controls.Styles 1.4
 import "./../basic"
 
 Item {
-    id:jyyRadioButtonRoot
+    id:zyyRadioButtonRoot
     height: 25
     width: 155
     property bool enabledState: true
@@ -12,8 +12,8 @@ Item {
     property bool checked: false
     property bool showIcon: false
     property string vipText: "VIP开通"
-    property color outerCircleColor: "#dadada"
-    property color innerCircleColor: "#cecece"
+    property color outerCircleColor : "#dadada"
+    property color innerCircleColor : "#cecece"
     property color rightRectColor: "#dadada"
     property color textColor: "#f8f9f9"
     property ExclusiveGroup exclusiveGroup
@@ -29,58 +29,53 @@ Item {
     }
     Component{
         id:radioButtonStyle
-        RadioButtonStyle{
-            indicator: Rectangle{
-                implicitHeight: 24
+        RadioButtonStyle {
+            indicator: Rectangle {
                 implicitWidth: 24
+                implicitHeight: 24
                 radius: 12
-                color: "transparent"
-                border.color:"red"
+                color:"transparent"
+                border.color:control.checked?(zyyRadioButtonRoot.enabledState?"#eb4d44":
+                                            (control.hovered ?"transparent":"#532426")) :
+                                            (zyyRadioButtonRoot.enabledState?
+                                            (control.hovered ?"white" :"#707074"):"#707074")
                 border.width: 1
-                Rectangle{
+                Rectangle {
                     anchors.fill: parent
                     visible: control.checked
-                    // color: "red"
-                    color: jyyRadioButtonRoot.enabledState?"#eb4d44":"#532426"
+                    color: zyyRadioButtonRoot.enabledState?"#eb4d44":"#532426"
                     radius: width/2
                     anchors.margins: 5
                 }
             }
-            label: Text{
-                color:jyyRadioButtonRoot.enabledState?"#ddd":"#707074"
+            label: Text {
+                color:zyyRadioButtonRoot.enabledState?"#ddd":"#707074"
                 font.pixelSize: 18
                 font.family: "黑体"
                 verticalAlignment: Text.AlignVCenter
-                height: jyyRadioButtonRoot.height
-
-                // 使用 TextMetrics 获取文本宽度
-                width: textMetrics.advanceWidth
-                TextMetrics{
-                    id:textMetrics
-                    text: control.text
-                    font: control.font || Qt.font({family: "黑体",pixelSize: 18 })
-                }
-                // width: control.text
+                height: zyyRadioButtonRoot.height
+                width: implicitWidth
+                text: control.text
                 JYYVipIconItem{
                     width: 50
                     height: 20
-                    visible: jyyRadioButtonRoot.showIcon
+                    visible: zyyRadioButtonRoot.showIcon
                     anchors.left: parent.right
                     anchors.leftMargin: 5
                     anchors.verticalCenter: parent.verticalCenter
-                    outerCircleColor: jyyRadioButtonRoot.outerCircleColor
-                    innerCircleColor: jyyRadioButtonRoot.innerCircleColor
-                    rightRectColor: jyyRadioButtonRoot.rightRectColor
-                    textColor: jyyRadioButtonRoot.textColor
-                    text: jyyRadioButtonRoot.vipText
+                    outerCircleColor: zyyRadioButtonRoot.outerCircleColor
+                    innerCircleColor: zyyRadioButtonRoot.innerCircleColor
+                    rightRectColor: zyyRadioButtonRoot.rightRectColor
+                    textColor: zyyRadioButtonRoot.textColor
+                    text:zyyRadioButtonRoot.vipText
                 }
             }
-            spacing: 10
+            spacing:10
         }
     }
     RadioButton{
         id:radioBtn
-        anchors.fill:parent
+        anchors.fill: parent
         text: contentText
         style: radioButtonStyle
         checked: parent.checked
