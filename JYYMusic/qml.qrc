@@ -9,5 +9,28 @@
         <file>Src/title/UserCommonSetting.qml</file>
         <file>Src/title/Search.qml</file>
         <file>Src/commonUI/JYYSearchBox.qml</file>
+        <file>Src/basic/BasicConfig.qml</file>
+        <file>Src/basic/qmldir</file>
+        <file>Src/mainPopups/LoginPopup.qml</file>
+        <file>Src/mainPopups/LoginByOtherMeansPopup.qml</file>
+        <file>Src/commonUI/JYYCheckBox.qml</file>
+        <file>Src/rightPage/TopTitle.qml</file>
+        <file>Src/rightPage/stackPages/CloudMusicCherryPick.qml</file>
+        <file>Src/rightPage/stackPages/settings.qml</file>
+        <file>Src/rightPage/stackPages/settingItems/Counter.qml</file>
+        <file>Src/rightPage/stackPages/settingItems/Common.qml</file>
+        <file>Src/commonUI/JYYComboBox.qml</file>
+        <file>Src/rightPage/stackPages/settingItems/SystemCfg.qml</file>
+        <file>Src/rightPage/stackPages/settingItems/Play.qml</file>
+        <file>Src/rightPage/stackPages/settingItems/MessageAndPrivacy.qml</file>
+        <file>Src/rightPage/stackPages/settingItems/CustomShotCut.qml</file>
+        <file>Src/rightPage/stackPages/settingItems/ToneQualityAndDownload.qml</file>
+        <file>Src/rightPage/stackPages/settingItems/DesktopLyrics.qml</file>
+        <file>Src/rightPage/stackPages/settingItems/Tools.qml</file>
+        <file>Src/rightPage/stackPages/settingItems/AboutJYY.qml</file>
+        <file>Src/commonUI/JYYRadioButton.qml</file>
+        <file>Src/commonUI/JYYSpliteLine.qml</file>
+        <file>Src/commonUI/JYYVipIconItem.qml</file>
+        <file>Src/commonUI/JYYShotCutTextField.qml</file>
     </qresource>
 </RCC>

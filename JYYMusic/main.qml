@@ -1,15 +1,26 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtGraphicalEffects 1.15
+import QtQuick.Controls 2.15
 import "./Src/leftPage"
 import "./Src/rightPage"
 import "./Src/playMusic"
 import "./Src/commonUI"
+import "./Src/basic"
+import "./Src/mainPopups"
 
 JYYWindow {
     id:mainWindow
     width: 1317
     height: 933
+    Connections{
+        id:globalEventDeal
+        target: BasicConfig
+        function onOpenLoginPopup(){ loginPopup.open()}
+        function onCloseLoginPopup(){loginPopup.close()}
+        function onOpenLoginByOtherMeansPopup(){loginByOtherMeansPopup.open()}
+        function onCloseLoginByOtherMeansPopup(){loginByOtherMeansPopup.close()}
+    }
 
     LeftPage{
         id:leftRectangle
@@ -36,6 +47,15 @@ JYYWindow {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         color: "#2d2d37"
+    }
+
+    LoginPopup{
+        id:loginPopup
+    }
+
+    LoginByOtherMeansPopup{
+        id:loginByOtherMeansPopup
+        anchors.centerIn: parent
     }
 }
 

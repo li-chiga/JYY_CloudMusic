@@ -302,4 +302,354 @@ property <type> <name>[: <initialValue>]
 
 子控件是可以拿到父控件以及父控件的兄弟控件属性以及内容的；
 
-这个部分涉及到的内容非常多，需要二次仔细思考相关的内容，同时留下一个bug需要进行修改恢复。
+这个部分涉及到的内容非常多，需要二次仔细思考相关的内容，同时留下一个bug需要进行修改恢复。同时由于这部分不涉及到后端数据显示的相关业务逻辑，所以不做过多内容展示，如果后期有需要新增相关的业务逻辑，争对业务逻辑显示要求进行相应的增删改查的功能。
+
+# 六、注册一个全局QML单例文件
+
+## 方法一、使用QML文件+qmldir注册单例（纯QML实现）
+
+1. 创建单例QML文件
+
+   假设你想创建一个名为GlobalSettings.qml的单例：
+
+   ```C++
+   pragma Singleton
+   import QtQuick 2.0
+   
+   QtObject{
+       property string appName: "MyApp"
+       property int version: 100
+       function showMessage(){
+           console.log("Hello form singleton")
+       }
+   }
+   ```
+
+   **注意：必须包含 `pragma Singleton`，这是 QML 单例的关键标识**。
+
+2. 创建qmldir文件
+
+   在GlobalSettings.qml所在的目录下创建一个名为qmldir的文本文件：
+
+   ```C++
+   singleton GlobalSetting 1.0 GlobalSettings.qml
+   ```
+
+   - singleton：声明这是一个单例类型。
+   - GlobalSettings：QML中使用的类型名。
+   - 1.0：版本号。
+   - GlobalSettings.qml：文件名。
+
+3. 在QML中使用
+
+   确保你的main.qml所在的项目能访问到这个qmldir目录（可通过qmldir的路径或import路径设置）。
+
+   ```C++
+   import QtQuick 2.15
+   import QtQuick.window 2.15
+   //假设qmldir所在目录被import为"com.mycompany.myapp"
+   import com.mycompany.myapp 1.0
+   
+   window{
+       width:640
+       height:480
+       visible:true
+   
+       Component.onCompleted:{
+           GlobalSettings.showMessage() //调用单例方法
+           console.log("App name:",GlobalSettings.appName)
+       }
+   }
+   ```
+
+   你需要在main.cpp中添加该目录到QML import路径，或使用qmldir所在的模块名进行导入。
+
+## 方法二、通过C++注册QML单例
+
+1. 定义C++类
+
+   ```C++ 
+   #ifndef GLOBALSETTINGS_H
+   #define GLOBALSETTINGS_H
+   
+   #include <QObject>
+   
+   class GlobalSettings:public QObject
+   {
+   	Q_OBJECT
+   	Q_PROPERTY(QString appName READ appName CONSTANT)
+   	Q_PROPERTY(int version READ version CONSTANT)
+   public:	
+   	explicit GlobalSettings(Qobject *parent = nullptr);
+   	
+   	QString appName() const{return "MyApp";}
+   	int version() const{return 100;}
+   	
+   	Q_INVOKABLE void showMessage(){
+   		qDebug()<<"Hello from C++ singleton!";
+   	}
+   };
+   
+   #endif //GLOBALSETTINGS_H
+   ```
+
+   ```C++
+   //GlobalSettings.cpp
+   GlobalSettings::GlobalSettings(QObject *parent):QObject(parent)
+   {}
+   ```
+
+   
+
+2. 注册为QML单例
+
+   在main.cpp中注册：
+
+   ```C++
+   #include <QGuiApplication>
+   #include <QQmlApplicationEngine>
+   #include <QQmlContext>
+   #include "GlobalSettings.h"
+   
+   //必须包含这个宏，以便于qmlRegisterSingletontype可用
+   
+   #include <QtQml>
+   
+   int main(int argc, char *argv[])
+   {
+   	QGuiApplication app(argc,argv);
+   	
+   	//注册为QML单例
+   	qmlRegisterSingletonType<GlobalSettings>("com.mycompany.myapp",1,0,"GlobalSettings",
+   		[](QQmlEngine*,QJSEngine*)->QObject*{
+   			return new GlobalSettings();
+   	});
+   	
+   	QQmlApplicationEngine engine;
+   	engine.loadFromModule("Main","Main");
+   	
+   	return app.exec();
+   }
+   ```
+
+3. 在QML中使用
+
+   ```C++
+   import QtQuick 2.15
+   import QtQuick.Window 2.15
+   import com.mycompany.myapp 1.0
+   
+   window {
+   	width:640
+   	height:480
+   	visible:true
+   	
+   	Component.onCompleted:{
+   		GlobalSettings.showMessage()
+   		console.log("App name:",GlobalSettings.appName)	
+   	}
+   }
+   ```
+
+   **小结对比**
+
+   | 方法         | 优点                               | 缺点                       |
+   | ------------ | ---------------------------------- | -------------------------- |
+   | QML + qmldir | 简单、纯QML实现，适合轻量配置      | 功能有限，不能调用复杂逻辑 |
+   | C++注册单例  | 功能强大，可访问系统资源、信号槽等 | 需要编译C++代码            |
+
+   - 确保qmldir文件没有拓展名（就是叫 qmldir）
+
+   - 使用pragma Singleton 时，该QML文件不能被直接实例化（如GlobalSettings{}会报错）。
+
+   - 模块导入路径要正确，必要时使用engine.addImportpath()添加路径。
+
+     在全局单例中设计一个QML的单例文件，让其作为一个三方的观测者去供整个项目的文件去使用。也就是说在这个单例文件充当一个桥梁，让不同的文件之间可以联合工作实现目标功能。主要是用于跨文件的信号触发大。
+
+# 七、登录弹窗设计
+
+1. ## 制作弹窗副文本
+
+2. ## 实现二维码与轮播图片动画动态显示功能
+
+   - ### Label控件的用法（使用Label控件实现文本的动态演示效果）
+
+     ```C++
+     Label{
+         visible: (qrcode.scale === 0.3) || (qrcode.scale === 0.5)
+         anchors.top: qrcode.bottom
+         anchors.topMargin: showAnimation.showFlag ? -250:-170
+         anchors.horizontalCenter: qrcode.horizontalCenter
+         width: (qrcode.scale === 0.3) ? 180:320
+         wrapMode: Text.WrapAnywhere //文本自行换行且放在剧中的位置
+         horizontalAlignment: Text.AlignHCenter	//水平对齐格式<水平中心对齐>
+         textFormat: Text.RichText	//文本格式是富文本（可以使用HTML的文本）
+         text:"<span style=\"font-size: 18px;color: #75777f;font-family:'微软雅黑 Light';\">使用</span>
+                 <a href=\"https://www.baidu.com\" style=\"text-decoration: none;\">
+                     <span style=\"font-size: 18px;color: cornflowerblue;font-family:'微软雅黑 Light';cursor:pointer;\">蒋易云音乐APP</span>
+                 </a>
+                 <span style=\"font-size: 18px;color: #75777f;font-family:'微软雅黑 Light';\">扫码登录</span>"
+     }
+     ```
+
+   - ### ParallelAnimation控件的用法
+
+     `ParallelAnimation`是QML中用于**并行执行多个动画**的容器控件，所有子动画同时启动并独立运行（与`SequentialAnimation`顺序执行相对）。
+
+     ### **关键属性**
+
+     | **属性**         | **类型**        | **描述**                                                    | **默认值** |
+     | ---------------- | --------------- | ----------------------------------------------------------- | ---------- |
+     | `animations`     | list<Animation> | 子动画列表（可包含`PropertyAnimation`, `PauseAnimation`等） | `[]`       |
+     | `running`        | bool            | 控制动画运行状态（`true`启动/`false`停止）                  | `false`    |
+     | `loops`          | int             | 动画循环次数（`Animation.Infinite`表示无限循环）            | `1`        |
+     | `alwaysRunToEnd` | bool            | 停止时是否完成当前动画周期（避免中途中断）                  | `false`    |
+     | `duration`       | int             | **只读属性**，取子动画中最长时长（单位：毫秒）              | 自动计算   |
+
+     ------
+
+     ### ⚙️ **主要方法**
+
+     ```C++
+     // 添加子动画
+     void addAnimation(Animation animation)
+      
+     // 移除子动画
+     void removeAnimation(Animation animation)
+      
+     // 清空所有子动画 
+     void clearAnimations()
+      
+     // 控制方法 
+     void start()    // 启动所有子动画
+     void stop()     // 立即停止 
+     void pause()    // 暂停 
+     void resume()   // 恢复 
+     ```
+
+   - ### NumberAnimation
+
+     专用于**数字属性（real/int）的平滑过渡动画**，通过插值算法在指定时间内生成中间值序列。相比通用`PropertyAnimation`，它在处理数值变化时具有更高性能。
+
+     **典型场景**：
+
+     - 控件位置移动（`x/y`坐标）
+     - 尺寸变化（`width/height`）
+     - 透明度渐变（`opacity`）
+     - 旋转角度（`rotation`）
+
+     ------
+
+     ### ⚙️ **关键属性详解**
+
+     | **属性**         | **类型** | **默认值** | **说明**                                                     |
+     | ---------------- | -------- | ---------- | ------------------------------------------------------------ |
+     | `from`           | real     | 当前值     | 动画起始值（不设置则取属性当前值）[4](https://blog.csdn.net/jolin678/article/details/120601022) |
+     | `to`             | real     | 当前值     | 动画目标值（必须指定）                                       |
+     | `duration`       | int      | 250        | 动画时长（毫秒）                                             |
+     | `easing.type`    | enum     | Linear     | **缓动曲线**类型（如`Easing.InOutQuad`缓入缓出，`Easing.OutBounce`弹跳）[2](https://blog.csdn.net/byxdaz/article/details/147356099 |
+     | `loops`          | int      | 1          | 循环次数（`Animation.Infinite`表示无限循环）[3](https://blog.csdn.net/liuhongwei123888/article/details/6057219) |
+     | `alwaysRunToEnd` | bool     | false      | 若为`true`，动画停止时仍会完成当前周期[4](https://blog.csdn.net/jolin678/article/details/120601022) |
+
+     ------
+
+     ### ⚠️ **使用注意事项**
+
+     1. **数值突变问题**
+        当跟踪的数值不规则变化时（如高频更新），可能出现动画卡顿。此时应改用`SmoothedAnimation`（带平滑滤波）[4](https://blog.csdn.net/jolin678/article/details/120601022)[6](https://blog.csdn.net/qq78442761/article/details/90295122)。
+
+     2. **性能优化**
+
+        ```C++
+        NumberAnimation on rotation {  // 直接绑定属性 
+            duration: 1000
+            easing.type:  Easing.OutElastic 
+        }
+        ```
+
+        此写法比独立声明`PropertyAnimation`效率提升约30%[1](https://blog.csdn.net/quietbxj/article/details/108285418)。
+
+     3. **与其它动画协作**
+
+        - **并行组**：`ParallelAnimation`同步执行多个动画
+        - **序列组**：`SequentialAnimation`按顺序执行动画
+
+        ```C++
+        SequentialAnimation {
+            NumberAnimation { target: rect; property: "x"; to: 100 }
+            PauseAnimation { duration: 500 }  // 延迟500ms 
+            NumberAnimation { property: "y"; to: 50 }
+        }
+        ```
+
+     ------
+
+     ### 💡 **典型应用示例**
+
+     **动态背景旋转效果**（引用自[6](https://blog.csdn.net/qq78442761/article/details/90295122)）：
+
+     ```C++
+     Image {
+         source: "bg.jpg" 
+         NumberAnimation on rotation {
+             from: 0 
+             to: 360 
+             duration: 20000
+             loops: Animation.Infinite 
+         }
+     }
+     ```
+
+     此代码实现背景图持续缓慢旋转（20秒/圈），增强视觉动效。
+
+     ------
+
+     ### 📊 **缓动曲线效果对比**
+
+     | **类型**            | **效果描述** | **适用场景**           |
+     | ------------------- | ------------ | ---------------------- |
+     | `Easing.Linear`     | 匀速运动     | 机械动画               |
+     | `Easing.InOutQuad`  | 先加速后减速 | 自然移动（如滑块）     |
+     | `Easing.OutBounce`  | 终点弹跳效果 | 按钮点击反馈           |
+     | `Easing.OutElastic` | 弹性振荡     | 柔性物体运动（如弹簧） |
+
+     > 注：完整缓动类型参考
+
+# 八、登录弹窗设计-使用其他的方式进行登录
+
+1、半遮盖二维码效果制作
+
+- 显示二维码
+
+- 使用画布属性按照对角线的方式遮盖1/2以上的二维码
+
+  ```C++
+  Canvas{
+      id:canvas
+      anchors.fill:parent
+      onPaint: {
+      	//在 onPaint 中，必须通过 getContext("2d") 获取 2D 渲染上下文
+          var ctx = canvas.getContext("2d");
+          //开始一条新路径避免跟之前的路径混淆
+          ctx.beginPath();
+          //绘制路径点：
+          ctx.moveTo(100, 1);//将画笔移动到坐标 (100, 1)，不画线。
+          ctx.lineTo(parent.width-10, 1);//lineTo(...)：从当前位置画直线到指定点。
+          ctx.lineTo(parent.width-10, 180);
+          ctx.lineTo(1,180);
+          ctx.lineTo(1,100);
+          ctx.moveTo(100, 1);
+          ctx.fillStyle = "#";
+          ctx.fill();
+      }
+  }
+  ```
+
+  ​	这里涉及到画布中画闭合图形的方法以及闭合图形的作用,同时电机遮盖的二维码就会重新跳转到上一层二维码展示位置。
+
+2、手机登录方式制作+密码输入显示制作+国旗国家选择制作。
+
+3、自动登录、忘记密码、验证码登录、登录按钮、注册按钮、微信、QQ、微博、网易登录。
+
+4、同意服务条款、隐私条款、儿童隐私条款。
+

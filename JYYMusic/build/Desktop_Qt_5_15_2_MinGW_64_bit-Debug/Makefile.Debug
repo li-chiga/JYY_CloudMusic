@@ -103,18 +103,68 @@ debug/qrc_qml.cpp: ../../qml.qrc \
 		E:/2_Software/Qt/5.15.2/mingw81_64/bin/rcc.exe \
 		../../main.qml \
 		../../Src/rightPage/RightPage.qml \
+		../../Src/rightPage/TopTitle.qml \
+		../../Src/rightPage/stackPages/CloudMusicCherryPick.qml \
+		../../Src/rightPage/stackPages/settings.qml \
+		../../Src/rightPage/stackPages/settingItems/AboutJYY.qml \
+		../../Src/rightPage/stackPages/settingItems/SystemCfg.qml \
+		../../Src/rightPage/stackPages/settingItems/CustomShotCut.qml \
+		../../Src/rightPage/stackPages/settingItems/ToneQualityAndDownload.qml \
+		../../Src/rightPage/stackPages/settingItems/Common.qml \
+		../../Src/rightPage/stackPages/settingItems/Counter.qml \
+		../../Src/rightPage/stackPages/settingItems/MessageAndPrivacy.qml \
+		../../Src/rightPage/stackPages/settingItems/DesktopLyrics.qml \
+		../../Src/rightPage/stackPages/settingItems/Tools.qml \
+		../../Src/rightPage/stackPages/settingItems/Play.qml \
 		../../Src/commonUI/JYYWindow.qml \
+		../../Src/commonUI/JYYCheckBox.qml \
+		../../Src/commonUI/JYYShotCutTextField.qml \
+		../../Src/commonUI/JYYComboBox.qml \
+		../../Src/commonUI/JYYSpliteLine.qml \
+		../../Src/commonUI/JYYRadioButton.qml \
 		../../Src/commonUI/JYYSearchBox.qml \
+		../../Src/commonUI/JYYVipIconItem.qml \
 		../../Src/playMusic/PlayMusic.qml \
+		../../Src/mainPopups/LoginByOtherMeansPopup.qml \
+		../../Src/mainPopups/LoginPopup.qml \
 		../../Src/title/UserCommonSetting.qml \
 		../../Src/title/Search.qml \
 		../../Src/title/MinAndMax.qml \
+		../../Src/basic/BasicConfig.qml \
+		../../Src/basic/qmldir \
 		../../Src/leftPage/LeftPage.qml
 	E:\2_Software\Qt\5.15.2\mingw81_64\bin\rcc.exe -name qml ..\..\qml.qrc -o debug\qrc_qml.cpp
 
 debug/qrc_res.cpp: ../../res.qrc \
 		E:/2_Software/Qt/5.15.2/mingw81_64/bin/rcc.exe \
+		../../Resources/mianPopups/qrcode.jpg \
+		../../Resources/mianPopups/QQ_hover.png \
+		../../Resources/mianPopups/ele_001.png \
+		../../Resources/mianPopups/QQ_normal.png \
+		../../Resources/mianPopups/wx_normal.png \
+		../../Resources/mianPopups/RK3588Groupqrcode.jpg \
+		../../Resources/mianPopups/wy_normal.png \
+		../../Resources/mianPopups/nosee.png \
+		../../Resources/mianPopups/see.png \
+		../../Resources/mianPopups/3588qrcode.png \
+		../../Resources/mianPopups/sina_hover.png \
+		../../Resources/mianPopups/clear.png \
+		../../Resources/mianPopups/tuxiang_001.png \
+		../../Resources/mianPopups/wy_hover.png \
+		../../Resources/mianPopups/wx_hover.png \
+		../../Resources/mianPopups/sina_normal.png \
+		../../Resources/mianPopups/nationFlags/england.png \
+		../../Resources/mianPopups/nationFlags/Germany.png \
+		../../Resources/mianPopups/nationFlags/hk.png \
+		../../Resources/mianPopups/nationFlags/ita.png \
+		../../Resources/mianPopups/nationFlags/china.png \
+		../../Resources/mianPopups/nationFlags/Netherland.png \
+		../../Resources/mianPopups/nationFlags/kor.png \
+		../../Resources/mianPopups/nationFlags/am.png \
+		../../Resources/mianPopups/nationFlags/canada.png \
+		../../Resources/mianPopups/nationFlags/amarican.png \
 		../../Resources/searchBox/remove.png \
+		../../Resources/title/close2.png \
 		../../Resources/title/close.png \
 		../../Resources/title/record.png \
 		../../Resources/title/vip.png \

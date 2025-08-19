@@ -1,5 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import "../basic" 1.0
+
 Window {
     id:mainWindow
     width: 1317
@@ -23,5 +25,9 @@ Window {
                               mainWindow.x += delta.x
                               mainWindow.y += delta.y
                           }
+        onClicked: {
+           BasicConfig.blankAreaClicked()
+        }
     }
+
 }

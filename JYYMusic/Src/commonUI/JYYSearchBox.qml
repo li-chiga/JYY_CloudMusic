@@ -1,8 +1,17 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import "../basic"
 
 //输入框
 TextField{
+
+    Connections{
+        target: BasicConfig
+        //onblankAreaClicked:{}
+        function onBlankAreaClicked(){
+            innerRect.gradientStopPos = 1
+        }
+    }
     background: Rectangle{//外部矩形
         anchors.fill: parent
         radius:8
